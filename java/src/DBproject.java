@@ -298,6 +298,7 @@ public class DBproject{
 	}//end readChoice
 
 	public static void AddDoctor(DBproject esql) {//1
+	
 	}
 
 	public static void AddPatient(DBproject esql) {//2
@@ -313,6 +314,21 @@ public class DBproject{
 
 	public static void ListAppointmentsOfDoctor(DBproject esql) {//5
 		// For a doctor ID and a date range, find the list of active and available appointments of the doctor
+		try {
+			String query = "SELECT * FROM has_appointment, Appointment WHERE appnt_id = appt_id AND doctor_id = ";
+			System.out.print("\tEnter doctor id: ");
+			String input = in.readLine();
+			query += input;
+//			query += " AND adate = "; 
+//			System.out.print("\tEnter date range of the appt: ");
+//			input = in.readLine();
+//			query += input;
+
+			int rowCount = esql.executeQuery(query);
+			System.out.println ("total row(s): " + rowCount);
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public static void ListAvailableAppointmentsOfDepartment(DBproject esql) {//6
