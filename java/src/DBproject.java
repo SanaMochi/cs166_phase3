@@ -323,9 +323,8 @@ public class DBproject{
 			System.out.print("\tEnter date range of the appt: ");
 			input = in.readLine();
 			query += (input + "\';");
-			System.out.print(query);
-			
-			int rowCount = esql.executeQuery(query);
+						
+			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println ("total row(s): " + rowCount);
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
