@@ -315,15 +315,16 @@ public class DBproject{
 	public static void ListAppointmentsOfDoctor(DBproject esql) {//5
 		// For a doctor ID and a date range, find the list of active and available appointments of the doctor
 		try {
-			String query = "SELECT * FROM has_appointment, Appointment WHERE appnt_id = appt_id AND doctor_id = ";
+			String query = "SELECT * FROM Appointment, has_appointment WHERE appnt_ID = appt_id AND (status = \'AC\' OR status = \'AV\') AND doctor_id = \'";
 			System.out.print("\tEnter doctor id: ");
 			String input = in.readLine();
 			query += input;
-//			query += " AND adate = "; 
-//			System.out.print("\tEnter date range of the appt: ");
-//			input = in.readLine();
-//			query += input;
-
+			query += "\' AND adate = \'"; 
+			System.out.print("\tEnter date range of the appt: ");
+			input = in.readLine();
+			query += (input + "\';");
+			System.out.print(query);
+			
 			int rowCount = esql.executeQuery(query);
 			System.out.println ("total row(s): " + rowCount);
 		}catch(Exception e) {
