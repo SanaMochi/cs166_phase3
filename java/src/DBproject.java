@@ -323,8 +323,11 @@ public class DBproject{
 			System.out.print("\tEnter doctor id: ");
 			String input = in.readLine();
 			query += input;
-			query += "\' AND adate = \'"; 
-			System.out.print("\tEnter date range of the appt: ");
+			query += "\' AND (adate BETWEEN \'"; 
+			System.out.print("\tEnter first date of date range of the appt: ");
+			input = in.readLine();
+			query += (input + "\' AND \'");
+			System.out.print("\tEnter second date of date range of the appt: ");
 			input = in.readLine();
 			query += (input + "\';");
 						
