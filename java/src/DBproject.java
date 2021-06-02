@@ -298,13 +298,39 @@ public class DBproject{
 	}//end readChoice
 
 	public static void AddDoctor(DBproject esql) {//1
-	
+		try {
+			String query = "INSERT INTO Doctor (doctor_ID, name, specialty, did) VALUES (\'";
+			System.out.print("\tEnter new doctor's id: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new doctor's name: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new doctor's specialty: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new doctor's department id: ");
+			String input = in.readLine();
+			query += (input + "\');");
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public static void AddPatient(DBproject esql) {//2
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public static void AddAppointment(DBproject esql) {//3
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 
@@ -313,6 +339,11 @@ public class DBproject{
 		// First, we have to find out the status from appointment table. If the status is available/active, insert/update tuples 
 		// in patient, has_appointment tables, and change the status (available -> active, active -> waitlisted) in appointment 
 		// table. If the status is waitlisted, update/insert tuples in patient and had_appointment tables. For the past status, we have nothing to do.
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 
 	}
 
@@ -340,14 +371,29 @@ public class DBproject{
 
 	public static void ListAvailableAppointmentsOfDepartment(DBproject esql) {//6
 		// For a department name and a specific date, find the list of available appointments of the department
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public static void ListStatusNumberOfAppointmentsPerDoctor(DBproject esql) {//7
 		// Count number of different types of appointments per doctors and list them in descending order
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	public static void FindPatientsCountWithStatus(DBproject esql) {//8
 		// Find how many patients per doctor there are with a given status (i.e. PA, AC, AV, WL) and list that number per doctor.
+		try {
+			
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	
