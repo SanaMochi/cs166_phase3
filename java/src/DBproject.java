@@ -310,10 +310,10 @@ public class DBproject{
 
 	public static void MakeAppointment(DBproject esql) {//4
 		// Given a patient, a doctor and an appointment of the doctor that s/he wants to take, add an appointment to the DB
-	}
-	
-	public static void GetOnWaitlist(DBproject esql) { //EC
-		// Called by MakeAppointment if doc has no available slots in the week
+		// First, we have to find out the status from appointment table. If the status is available/active, insert/update tuples 
+		// in patient, has_appointment tables, and change the status (available -> active, active -> waitlisted) in appointment 
+		// table. If the status is waitlisted, update/insert tuples in patient and had_appointment tables. For the past status, we have nothing to do.
+
 	}
 
 	public static void ListAppointmentsOfDoctor(DBproject esql) {//5
@@ -383,29 +383,34 @@ public class DBproject{
 		// For a patient ID and date range, find the list of active or past appointments made by the patient
 	}
 	
-	public static void ListMintenanceRequestsOfDoctors(DBproject esql) {//16
+	public static void ListMaintenanceRequestsOfDoctors(DBproject esql) {//16
 		// For a doctor name, find the list of all maintenance requests made by the doctor
 	}
 	
-	public static void ListMintenanceRequestsOfDoctors(DBproject esql) {//16
-		// For a doctor name, find the list of all maintenance requests made by the doctor
+	public static void UpdateAppointmentStatusWithMaintenanceRequest(DBproject esql) {//17
+		// After a maintenance request is addressed, make necessary entries showing the available appointments for that doctor of the department
+		// how would I know when to make the updates to the appts tho? with the function #4
+		// is it just whenever the user calls the function, I get the 2 foreign keys and find the appt with the dept name and timeslot and
+		// update the corresponding appt to active? yes
+
+
 	}
 	
 	// Patients Queries
-	public static void DepartmentsOfHospital(DBproject esql) {//17
+	public static void DepartmentsOfHospital(DBproject esql) {//18
 		// For a hospital name, find the list of the specialized departments in the hospital
 	}
 	
-	public static void DoctorAppointmentsOfWeek(DBproject esql) {//18
+	public static void DoctorAppointmentsOfWeek(DBproject esql) {//19
 		// For a hospital name and department name, find the list of all the doctors whose appointments are available on the week
 	}
 	
-	public static void AppointmentDetails(DBproject esql) {//19
+	public static void AppointmentDetails(DBproject esql) {//20
 		// For appt number, find the appt details
 	}
 	
 	// Doctors Queries
-	public static void MakeMaintenanceRequests(DBproject esql) {//18
+	public static void MakeMaintenanceRequests(DBproject esql) {//21
 		// For a list of available appts, make a maintenance request
 	}
 }
