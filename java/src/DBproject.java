@@ -304,14 +304,17 @@ public class DBproject{
 			String input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new doctor's name: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new doctor's specialty: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new doctor's department id: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\');");
+
+			int rowCount = esql.executeQueryAndPrintResult(query);
+			System.out.println("total row(s): " + rowCount);
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -360,7 +363,7 @@ public class DBproject{
 			query += (input + "\' AND \'");
 			System.out.print("\tEnter second date of date range of the appt: ");
 			input = in.readLine();
-			query += (input + "\';");
+			query += (input + "\');");
 						
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println ("total row(s): " + rowCount);
