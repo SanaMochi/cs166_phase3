@@ -311,6 +311,10 @@ public class DBproject{
 	public static void MakeAppointment(DBproject esql) {//4
 		// Given a patient, a doctor and an appointment of the doctor that s/he wants to take, add an appointment to the DB
 	}
+	
+	public static void GetOnWaitlist(DBproject esql) { //EC
+		// Called by MakeAppointment if doc has no available slots in the week
+	}
 
 	public static void ListAppointmentsOfDoctor(DBproject esql) {//5
 		// For a doctor ID and a date range, find the list of active and available appointments of the doctor
@@ -338,9 +342,67 @@ public class DBproject{
 	public static void ListStatusNumberOfAppointmentsPerDoctor(DBproject esql) {//7
 		// Count number of different types of appointments per doctors and list them in descending order
 	}
-
 	
 	public static void FindPatientsCountWithStatus(DBproject esql) {//8
 		// Find how many patients per doctor there are with a given status (i.e. PA, AC, AV, WL) and list that number per doctor.
+	}
+	
+	
+	//Start of EC
+	// Hospital Management Queries
+	public static void ListAvailableAppointmentsOfDepartmentID(DBproject esql) {//9
+		// For a department ID, find the list of available appointments of the department
+	}
+	
+	public static void ListActiveAppointmentsOfDepartment(DBproject esql) {//10
+		// For a department ID and a specific date, find the list of available appointments of the department
+	}
+	
+	public static void ListPatientsWithAppointmentsOnDate(DBproject esql) {//11
+		// For a department ID and a specific date, find the list patients who made appointments on the day
+	}
+	
+	public static void ListPatientDetails(DBproject esql) {//12
+		// For a patient ID, find the details of the patient
+	}
+	
+	public static void ListPatientsWithActivePastAppointmentsInDepartment(DBproject esql) {//13
+		// For a department ID and a patient ID, find the list of active or past appointments made by the patient in the department
+	}
+	
+	public static void ListAddressedRequestsByMaintenanceStaff(DBproject esql) {//14
+		// For a maintenance staff ID, find the list of requests addressed by the staff
+	}
+	
+	
+	// Hospital Maintenance Staff Queries
+	public static void ListPatientsWithActivePastAppointmentsOnDate(DBproject esql) {//15
+		// For a patient ID and date range, find the list of active or past appointments made by the patient
+	}
+	
+	public static void ListMintenanceRequestsOfDoctors(DBproject esql) {//16
+		// For a doctor name, find the list of all maintenance requests made by the doctor
+	}
+	
+	public static void ListMintenanceRequestsOfDoctors(DBproject esql) {//16
+		// For a doctor name, find the list of all maintenance requests made by the doctor
+	}
+	
+	// Patients Queries
+	public static void DepartmentsOfHospital(DBproject esql) {//17
+		// For a hospital name, find the list of the specialized departments in the hospital
+	}
+	
+	public static void DoctorAppointmentsOfWeek(DBproject esql) {//18
+		// For a hospital name and department name, find the list of all the doctors whose appointments are available on the week
+	}
+	
+	public static void AppointmentDetails(DBproject esql) {//19
+		// For appt number, find the appt details
+	}
+	
+	// Doctors Queries
+	public static void MakeMaintenanceRequests(DBproject esql) {//18
+		// For a list of available appts, make a maintenance request
 	}
 }
