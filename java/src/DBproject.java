@@ -345,10 +345,22 @@ public class DBproject{
 			System.err.println(e.getMessage());
 		}
 	}
-
+// need to test
 	public static void AddPatient(DBproject esql) {//2
 		try {
-			String query = "";
+			String query = "INSERT INTO Patient (patient_ID, name, gtype, age, address, number_of_appts) VALUES (\'";
+			System.out.print("\tEnter new patient's id: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new patient's name: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new patient's gender: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new patient's number of appointments: ");
+			String input = in.readLine();
+			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
@@ -356,10 +368,22 @@ public class DBproject{
 			System.err.println(e.getMessage());
 		}
 	}
-
+// need to test
 	public static void AddAppointment(DBproject esql) {//3
 		try {
-			String query = "";
+			String query = "INSERT INTO Appointment (appnt_ID , adate, time_slot, status) VALUES (\'";
+			System.out.print("\tEnter new appointment's id: ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new appointment's date (MM/DD/YYYY): ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new appointment's time slot (HH:MM-HH:MM): ");
+			String input = in.readLine();
+			query += (input + "\', \'");
+			System.out.print("\tEnter new appointment's status (AV, AC, PA, WA): ");
+			String input = in.readLine();
+			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
@@ -393,10 +417,10 @@ public class DBproject{
 			String input = in.readLine();
 			query += input;
 			query += "\' AND (adate BETWEEN \'"; 
-			System.out.print("\tEnter first date of date range of the appt: ");
+			System.out.print("\tEnter first date of date range of the appt (MM/DD/YYYY): ");
 			input = in.readLine();
 			query += (input + "\' AND \'");
-			System.out.print("\tEnter second date of date range of the appt: ");
+			System.out.print("\tEnter second date of date range of the appt (MM/DD/YYYY): ");
 			input = in.readLine();
 			query += (input + "\');");
 						
