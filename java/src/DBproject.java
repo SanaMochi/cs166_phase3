@@ -442,11 +442,11 @@ public class DBproject{
 			System.err.println(e.getMessage());
 		}
 	}
-
+//I'll finish later lmao
 	public static void ListStatusNumberOfAppointmentsPerDoctor(DBproject esql) {//7
 		// Count number of different types of appointments per doctors and list them in descending order
 		try {
-			String query = "";
+			String query = "SELECT  FROM Doctor, has_appointment, Appointment WHERE doctor_ID = doctor_id AND appnt_ID = appt_id AND GROUP BY  ORDER BY Desc count";
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
