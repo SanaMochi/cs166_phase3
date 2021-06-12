@@ -353,13 +353,13 @@ public class DBproject{
 			String input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new patient's name: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new patient's gender: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new patient's number of appointments: ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
@@ -376,13 +376,13 @@ public class DBproject{
 			String input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new appointment's date (MM/DD/YYYY): ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new appointment's time slot (HH:MM-HH:MM): ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\', \'");
 			System.out.print("\tEnter new appointment's status (AV, AC, PA, WA): ");
-			String input = in.readLine();
+			input = in.readLine();
 			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
