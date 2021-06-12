@@ -205,7 +205,9 @@ public class DBproject{
 	         // ignored.
 		}//end try
 	}//end cleanup
-
+	int MAX_doc_id = 249;
+	int MAX_pat_id = 249;
+	int MAX_apt_id = 549;
 	/**
 	 * The main execution method
 	 * 
@@ -296,13 +298,15 @@ public class DBproject{
 		}while (true);
 		return input;
 	}//end readChoice
-int MAX_doc_id = 249;
 	public static void AddDoctor(DBproject esql) {//1
+		String input = "";
+		int number;
 		try {
 			String query = "INSERT INTO Doctor (doctor_ID, name, specialty, did) VALUES (\'";
 			do {System.out.print("\tEnter new doctor's id: ");
-			String input = in.readLine();
-			} while (input < MAX_doc_id) 
+			    input = in.readLine();
+			    number  = Integer.parseInt(input);
+			} while (number < MAX_doc_id);
 			query += (input + "\', \'");
 			System.out.print("\tEnter new doctor's name: ");
 			input = in.readLine();
@@ -323,10 +327,15 @@ int MAX_doc_id = 249;
 	}
 // need to test
 	public static void AddPatient(DBproject esql) {//2
+		String input =  "";
+		int number;
 		try {
 			String query = "INSERT INTO Patient (patient_ID, name, gtype, age, address, number_of_appts) VALUES (\'";
-			System.out.print("\tEnter new patient's id: ");
-			String input = in.readLine();
+			do{
+				System.out.print("\tEnter new patient's id: ");
+				input = in.readLine();
+				number = Integer.parseInt(input);
+			}while(number < MAX_pat_id);
 			query += (input + "\', \'");
 			System.out.print("\tEnter new patient's name: ");
 			input = in.readLine();
@@ -334,22 +343,31 @@ int MAX_doc_id = 249;
 			System.out.print("\tEnter new patient's gender: ");
 			input = in.readLine();
 			query += (input + "\', \'");
-			System.out.print("\tEnter new patient's number of appointments: ");
-			input = in.readLine();
+			do{
+				System.out.print("\tEnter new patient's number of appointments: ");
+				input = in.readLine();
+				number = Integer.parseInt(input);
+			}while(number < 0);
 			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
+			NAX_pat_id++;
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
 	}
 // need to test
 	public static void AddAppointment(DBproject esql) {//3
+		String input = "";
+		int number;
 		try {
 			String query = "INSERT INTO Appointment (appnt_ID , adate, time_slot, status) VALUES (\'";
-			System.out.print("\tEnter new appointment's id: ");
-			String input = in.readLine();
+			do{
+				System.out.print("\tEnter new appointment's id: ");
+				input = in.readLine();
+				number = Integer.parseInt(input);
+			}while(number < MAX_apt_id);
 			query += (input + "\', \'");
 			System.out.print("\tEnter new appointment's date (MM/DD/YYYY): ");
 			input = in.readLine();
@@ -357,12 +375,15 @@ int MAX_doc_id = 249;
 			System.out.print("\tEnter new appointment's time slot (HH:MM-HH:MM): ");
 			input = in.readLine();
 			query += (input + "\', \'");
-			System.out.print("\tEnter new appointment's status (AV, AC, PA, WA): ");
-			input = in.readLine();
+			do{
+				System.out.print("\tEnter new appointment's status (AV, AC, PA, WA): ");
+				input = in.readLine();
+			}while(input != "AV" || input != "AC" || input != "PA" || input != "WA");
 			query += (input + "\');");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
+			NAX_apt_id++;
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -377,7 +398,7 @@ int MAX_doc_id = 249;
 		try {
 			 System.out.print("\tEnter patient ID of patient who wants to make an appointment: " );
                         String pat_id = in.readLine();
-                        System.out.print("\tEnter doctor ID of doctor patient wamts to make an appointment with: ");
+                        System.out.print("\tEnter doctor ID of doctor patient wants to make an appointment with: ");
                         String doc_id = in.readLine();
                         System.out.print("\tEnter appointment ID of appointment the patient wants: ");
                         String appt_id = in.readLine();
