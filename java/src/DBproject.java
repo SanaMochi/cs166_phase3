@@ -296,12 +296,13 @@ public class DBproject{
 		}while (true);
 		return input;
 	}//end readChoice
-
+int MAX_doc_id = 249;
 	public static void AddDoctor(DBproject esql) {//1
 		try {
 			String query = "INSERT INTO Doctor (doctor_ID, name, specialty, did) VALUES (\'";
-			System.out.print("\tEnter new doctor's id: ");
+			do {System.out.print("\tEnter new doctor's id: ");
 			String input = in.readLine();
+			} while (input < MAX_doc_id) 
 			query += (input + "\', \'");
 			System.out.print("\tEnter new doctor's name: ");
 			input = in.readLine();
@@ -315,6 +316,7 @@ public class DBproject{
 
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
+			MAX_doc_id++;
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -383,19 +385,19 @@ public class DBproject{
                                 int status = esql.executeQueryAndPrintResult(query);
                                 if (status != 0) {
                                         // appt exists and add update patient, has_appt, appt (status av -> ac)
-
+					
                                 }
                         query = "SELECT status FROM Appointment WHERE appnt_ID = \'" + appt_id + "\' AND status = \'AC\';";
                                 status = esql.executeQueryAndPrintResult(query);
                                 if (status != 0) {
                                         // appt ac and update patient, has_appt, appt (status ac -> wl)
-
+					
                                 }
                         query = "SELECT status FROM Appointment WHERE appnt_ID = \'" + appt_id + "\' AND status = \'WL\';";
                                 status = esql.executeQueryAndPrintResult(query);
                                 if (status != 0) {
                                         // appt wl and update patient, has_appt
-
+					
                                 }
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
