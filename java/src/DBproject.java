@@ -208,6 +208,7 @@ public class DBproject{
 	static int MAX_doc_id = 249;
 	static int MAX_pat_id = 249;
 	static int MAX_apt_id = 549;
+//	static int MAX_dept_id = 124;
 	/**
 	 * The main execution method
 	 * 
@@ -314,10 +315,10 @@ public class DBproject{
 			System.out.print("\tEnter new doctor's specialty: ");
 			input = in.readLine();
 			query += (input + "\', \'");
-			do {System.out.print("\tEnter new doctor's department id: ");
+			System.out.print("\tEnter new doctor's department id: ");
 				input = in.readLine();
-				number = Integer.parseInt(input);
-			} while (number < MAX_doc_id);
+//				number = Integer.parseInt(input);
+//			} while (number < MAX_dept_id);
 			query += (input + "\');");
 
 			int rowCount = esql.executeQueryAndPrintResult(query);
