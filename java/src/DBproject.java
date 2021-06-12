@@ -352,7 +352,7 @@ public class DBproject{
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
-			NAX_pat_id++;
+			MAX_pat_id++;
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -383,7 +383,7 @@ public class DBproject{
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
-			NAX_apt_id++;
+			MAX_apt_id++;
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -396,14 +396,15 @@ public class DBproject{
 		// in patient, has_appointment tables, and change the status (available -> active, active -> waitlisted) in appointment 
 		// table. If the status is waitlisted, update/insert tuples in patient and had_appointment tables. For the past status, we have nothing to do.
 		try {
-			 System.out.print("\tEnter patient ID of patient who wants to make an appointment: " );
+			System.out.print("\tEnter patient ID of patient who wants to make an appointment: " );
                         String pat_id = in.readLine();
                         System.out.print("\tEnter doctor ID of doctor patient wants to make an appointment with: ");
                         String doc_id = in.readLine();
                         System.out.print("\tEnter appointment ID of appointment the patient wants: ");
                         String appt_id = in.readLine();
-                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND status = \'WL\';";
+                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND A.status = \'WL\';";
                         int status = esql.executeQueryAndPrintResult(query);
+			String query2 = "";
                         if (status != 0) {
                                 // appt wl and update patient, has_appt
 				query2 = "UPDATE Patient SET number_of_appts = (number_of_appts + 1)";
@@ -413,7 +414,7 @@ public class DBproject{
 				System.out.println("total row(s): " + status);
 				System.out.print("Updated to waitlist\n");
 			}
-                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND status = \'AC\';";
+                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND A.status = \'AC\';";
                         status = esql.executeQueryAndPrintResult(query);
                         else if (status != 0) {
                                 // appt ac and update patient, has_appt, appt (status ac -> wl)
@@ -427,7 +428,7 @@ public class DBproject{
 				System.out.print("Updated to waitlist\n");
 
 			}
-                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND status = \'AV\';";
+                        String query = "SELECT A.status FROM Appointment A, has_appointment H, Doctor D, searches S, Patient P WHERE P.patient_ID = " + pat_id + " AND D.doctor_ID = " + doc_id + " AND A.appnt_ID = " + appt_id + " ANDP.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND appnt_ID = \'" + appt_id + "\' AND A.status = \'AV\';";
                         status = esql.executeQueryAndPrintResult(query);
                         if (status != 0) {
                                 // appt exists and add update patient, has_appt, appt (status av -> ac)
