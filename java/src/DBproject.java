@@ -445,7 +445,7 @@ public class DBproject{
 			System.err.println(e.getMessage());
 		}
 	}
-//I'll finish later lmao
+
 	public static void ListStatusNumberOfAppointmentsPerDoctor(DBproject esql) {//7
 		// Count number of different types of appointments per doctors and list them in descending order
 		try {
@@ -461,10 +461,10 @@ public class DBproject{
 	public static void FindPatientsCountWithStatus(DBproject esql) {//8
 		// Find how many patients per doctor there are with a given status (i.e. PA, AC, AV, WL) and list that number per doctor.
 		try {
-			String query = "SELECT COUNT(patient_ID) FROM Patient, searches, Appointment, has_appointment, Doctor WHERE patient_ID = pid AND aid = appnt_ID AND appnt_ID = appt_id AND doc_id = doctor_ID AND status = \'";
+			String query = "SELECT D.doctor_ID, COUNT(P.patient_ID) AS pcount FROM Patient P, searches S, Appointment A, has_appointment H, Doctor D WHERE P.patient_ID = S.pid AND S.aid = A.appnt_ID AND A.appnt_ID = H.appt_id AND H.doctor_id = D.doctor_ID AND A.status = \'";
                         System.out.println("\tEnter status of appointment: ");
                         String input = in.readLine();
-                        query += (input + "\' GROUP BY doctor_id;");
+                        query += (input + "\' GROUP BY D.doctor_ID;");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
