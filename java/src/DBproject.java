@@ -373,7 +373,30 @@ public class DBproject{
 		// in patient, has_appointment tables, and change the status (available -> active, active -> waitlisted) in appointment 
 		// table. If the status is waitlisted, update/insert tuples in patient and had_appointment tables. For the past status, we have nothing to do.
 		try {
-			String query = "";
+			 System.out.print("\tEnter patient ID of patient who wants to make an appointment: " );
+                        String pat_id = in.readLine();
+                        System.out.print("\tEnter doctor ID of doctor patient wamts to make an appointment with: ");
+                        String doc_id = in.readLine();
+                        System.out.print("\tEnter appointment ID of appointment the patient wants: ");
+                        String appt_id = in.readLine();
+                        String query = "SELECT status FROM Appointment WHERE appnt_ID = \'" + appt_id + "\' AND status = \'AV\';";
+                                int status = esql.executeQueryAndPrintResult(query);
+                                if (status != 0) {
+                                        // appt exists and add update patient, has_appt, appt (status av -> ac)
+
+                                }
+                        query = "SELECT status FROM Appointment WHERE appnt_ID = \'" + appt_id + "\' AND status = \'AC\';";
+                                status = esql.executeQueryAndPrintResult(query);
+                                if (status != 0) {
+                                        // appt ac and update patient, has_appt, appt (status ac -> wl)
+
+                                }
+                        query = "SELECT status FROM Appointment WHERE appnt_ID = \'" + appt_id + "\' AND status = \'WL\';";
+                                status = esql.executeQueryAndPrintResult(query);
+                                if (status != 0) {
+                                        // appt wl and update patient, has_appt
+
+                                }
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
@@ -408,7 +431,13 @@ public class DBproject{
 	public static void ListAvailableAppointmentsOfDepartment(DBproject esql) {//6
 		// For a department name and a specific date, find the list of available appointments of the department
 		try {
-			String query = "";
+			String query = "SELECT * FROM Appointment, has_appointment, request_maintenance WHERE appnt_ID = appt_id AND doctor_id = did AND status = \'AV\' ANDdept_name = \'";
+                        System.out.print("\tEnter department name: ");
+                        String input = in.readLine();
+                        query += input + "\' AND adate = \'";
+                        System.out.print("\tEnter date of appointment: ");
+                        input = in.readLine();
+                        query += input + "\';";
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
@@ -420,8 +449,9 @@ public class DBproject{
 	public static void ListStatusNumberOfAppointmentsPerDoctor(DBproject esql) {//7
 		// Count number of different types of appointments per doctors and list them in descending order
 		try {
-			String query = "SELECT  FROM Doctor, has_appointment, Appointment WHERE doctor_ID = doctor_id AND appnt_ID = appt_id AND GROUP BY  ORDER BY Desc count";
-			
+			String query = "SELECT doctor_id, name, status, COUNT(appnt_id) AS count FROM Doctor, has_appointment, Appointment WHERE doctor_ID = doctor_id AND appnt_ID = appt_id GROUP BY status ORDER BY Desc count";
+                        System.out.println("\tEnter status of appointment: ");
+                        int rowCount = esql.executeQueryAndPrintResult(query);			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
 		}catch(Exception e) {
@@ -432,7 +462,10 @@ public class DBproject{
 	public static void FindPatientsCountWithStatus(DBproject esql) {//8
 		// Find how many patients per doctor there are with a given status (i.e. PA, AC, AV, WL) and list that number per doctor.
 		try {
-			String query = "";
+			String query = "SELECT COUNT(patient_ID) FROM Patient, searches, Appointment, has_appointment, Doctor WHERE patient_ID = pid AND aid = appnt_ID AND appnt_ID = appt_id AND doc_id = doctor_ID AND status = \'";
+                        System.out.println("\tEnter status of appointment: ");
+                        String input = in.readLine();
+                        query += (input + "\' GROUP BY doctor_id;");
 			
 			int rowCount = esql.executeQueryAndPrintResult(query);
 			System.out.println("total row(s): " + rowCount);
